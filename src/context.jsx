@@ -10,6 +10,10 @@ export const AppProvider = ({ children }) => {
   const toggleDarkTheme = () => {
     const newDarkTheme = !isDarkTheme;
     setIsDarkTheme(newDarkTheme);
+    const body = document.querySelector("body");
+    body.classList.toggle("dark-theme", newDarkTheme);
+    console.log(body);
+    console.log(body);
   };
 
   //! Sử dụng AppContext.Provider để cung cấp giá trị cho các component con
