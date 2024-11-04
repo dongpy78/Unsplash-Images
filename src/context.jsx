@@ -5,9 +5,19 @@ const AppContext = createContext();
 
 //! Tạo một provider để cung cấp ngữ cảnh cho các component con
 export const AppProvider = ({ children }) => {
-  const greeting = "hello";
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  const toggleDarkTheme = () => {
+    const newDarkTheme = !isDarkTheme;
+    setIsDarkTheme(newDarkTheme);
+  };
+
   //! Sử dụng AppContext.Provider để cung cấp giá trị cho các component con
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={{ isDarkTheme, toggleDarkTheme }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 //! Tạo một hook tùy chỉnh để sử dụng ngữ cảnh dễ dàng hơn
