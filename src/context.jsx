@@ -6,19 +6,20 @@ const AppContext = createContext();
 //! Tạo một provider để cung cấp ngữ cảnh cho các component con
 export const AppProvider = ({ children }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("cat");
 
   const toggleDarkTheme = () => {
     const newDarkTheme = !isDarkTheme;
     setIsDarkTheme(newDarkTheme);
     const body = document.querySelector("body");
     body.classList.toggle("dark-theme", newDarkTheme);
-    console.log(body);
-    console.log(body);
   };
 
   //! Sử dụng AppContext.Provider để cung cấp giá trị cho các component con
   return (
-    <AppContext.Provider value={{ isDarkTheme, toggleDarkTheme }}>
+    <AppContext.Provider
+      value={{ isDarkTheme, toggleDarkTheme, searchTerm, setSearchTerm }}
+    >
       {children}
     </AppContext.Provider>
   );
