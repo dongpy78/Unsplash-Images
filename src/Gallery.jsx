@@ -3,17 +3,16 @@ import axios from "axios";
 import { useGlobalContext } from "./context";
 
 const url =
-  "https://api.unsplash.com/search/photos?client_id=PHGXwEbxNBOIneyc54DMWU_DtnVYSPOW3oWF7kZ49ik&query=office";
+  "https://api.unsplash.com/search/photos?client_id=PHGXwEbxNBOIneyc54DMWU_DtnVYSPOW3oWF7kZ49ik&";
 
 function Gallery() {
   const { searchTerm } = useGlobalContext();
 
   //! Sử dụng useQuery để lấy dữ liệu từ API
   const response = useQuery({
-    queryKey: ["images"], //! Tên khóa để xác định query này
+    queryKey: ["images", searchTerm], //! Tên khóa để xác định query này
     queryFn: async () => {
       const result = await axios.get(`${url}&query=${searchTerm}`);
-      console.log(result);
 
       return result.data;
     },
